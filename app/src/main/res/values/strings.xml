@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">constranttask</string>
+    <string name="enter_email">Enter Reciver Mail ID</string>
+    <string name="subject">Subject</string>
+    <string name="body">Body</string>
+    <string name="move">MAIL</string>
+    <string name="to">To:</string>
+    <string name="number">Number</string>
+    <string name="message">Message</string>
+    <string name="SMS">SMS</string>
+</resources>
