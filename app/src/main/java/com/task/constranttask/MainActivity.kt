@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -35,18 +36,35 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         btnmove?.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SENDTO)
+            if(etmail?.text?.trim().isNullOrEmpty()){
+                etmail?.error="Enter The Email"
+            }else if(etsub?.text?.trim().isNullOrEmpty()){
+                etsub?.error="Enter The Subject"
+            }else if(etbody?.text?.trim().isNullOrEmpty()){
+                etbody?.error="Enter The Body"
+            }
+            else {
+                val intent = Intent(Intent.ACTION_SENDTO)
                 intent.setData(Uri.parse("mailto:"))
                 intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(etmail?.text?.toString()?.trim()))
                 intent.putExtra("subject", etsub?.text?.toString()?.trim())
                 intent.putExtra("body", etbody?.text?.toString()?.trim())
                 startActivity(intent)
+            }
         }
         btnsms?.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SENDTO)
-            intent.setData(Uri.parse("smsto:${etnumb?.text?.toString()?.trim()}"))
-            intent.putExtra("message", etmess?.text?.toString()?.trim())
-            startActivity(intent)
+            if (etnumb?.text?.trim().isNullOrEmpty()){
+                etnumb?.error="Enter The Number"
+            } else if((etnumb?.text?.trim()?.length?:0) <10){
+                etnumb?.error = "Number should be valid"
+            } else if(etmess?.text?.trim().isNullOrEmpty()){
+                etmess?.error="Enter The Message"
+            }else {
+                val intent = Intent(Intent.ACTION_SENDTO)
+                intent.setData(Uri.parse("smsto:${etnumb?.text?.toString()?.trim()}"))
+                intent.putExtra("message", etmess?.text?.toString()?.trim())
+                startActivity(intent)
+            }
         }
     }
 }
