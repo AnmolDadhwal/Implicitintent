@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity() {
                 etmess?.error="Enter The Message"
             }else {
                 val intent = Intent(Intent.ACTION_SENDTO)
-                intent.setData(Uri.parse("smsto:${etnumb?.text?.toString()?.trim()}"))
-                intent.putExtra("message", etmess?.text?.toString()?.trim())
+                intent.setData(Uri.parse("smsto:${etnumb?.text?.toString()?.trim()} "))
+                intent.putExtra(Intent.EXTRA_TEXT, etmess?.text?.toString()?.trim())
                 startActivity(intent)
             }
         }
